@@ -15,7 +15,11 @@ export const createStudent = async (req, res) => {
     // res.send('Router is working');
     const student = req.body;
 
+    console.log(student);
+
     const newStudent = new StudentData(student);
+
+    console.log(newStudent);
 
     try {
         await newStudent.save();

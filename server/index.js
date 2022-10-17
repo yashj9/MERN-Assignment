@@ -6,12 +6,12 @@ import studentRoutes from './routes/student.js';
 
 const app = express();
 
-app.use('/students', studentRoutes);
+app.use(cors());
 
 app.use(bodyParser.json({limit: "20mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "20mb", extended: true}));
 
-app.use(cors());
+app.use('/students', studentRoutes);
 
 const MDB_CONNECTION_URL = "mongodb+srv://yashj9:yashjpw@cluster0.dnsgovv.mongodb.net/?retryWrites=true&w=majority";
 
