@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import studentRoutes from './routes/student.js';
+import driveRoutes from './routes/vaccineDrive.js';
+import landingDetailsRoutes from './routes/landingDetails.js';
 
 const app = express();
 
@@ -12,6 +14,8 @@ app.use(bodyParser.json({limit: "20mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "20mb", extended: true}));
 
 app.use('/students', studentRoutes);
+app.use('/drives', driveRoutes);
+app.use('/landingDetails', landingDetailsRoutes);
 
 const MDB_CONNECTION_URL = "mongodb+srv://yashj9:yashjpw@cluster0.dnsgovv.mongodb.net/?retryWrites=true&w=majority";
 

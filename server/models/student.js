@@ -1,12 +1,20 @@
 import mongoose from "mongoose";
 
 const studentSchema = mongoose.Schema({
-    regNo: Number,
-    studentName: String,
-    grade: String,
-    section: {
+    date: {
+        type: Date,
+        default: Date.now(),
+    },
+    studentName: {
         type: String,
-        default: 'A'
+        required: true,
+    },
+    vaccineStatus:{
+        type: Boolean,
+    },
+    vaccineName: {
+        type: String,
+        required: true,
     }
 });
 

@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    background-color: aliceblue;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* .main{
+  background-color: aliceblue;
+} */
+
+.sidebar{
+  /* border: 1px solid black; */
+  /* height: 100vh; */
+  width: 230px;
+  /* padding: 1rem; */
+  /* background: antiquewhite; */
+}
+
+.sidebar button {
+  margin-bottom: 1rem;
+  background-color: bisque;
+}
+
+.navbar-brand{
+  cursor: pointer;
+}
+
+.dashboard-main{
+/* border: 1px solid red; */
+margin-left: 1rem;
+height: calc(100vh - 7rem);
+width: 100%;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+background-color: white;
+padding: 1rem;
+}
+
+.card-container .card {
+  margin-right: 2rem;
+}
+
+.student-form{
+  /* width: 300px; */
+}
