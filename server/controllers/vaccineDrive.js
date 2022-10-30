@@ -48,3 +48,33 @@ export const editDrive = async (req, res) => {
     }
 }
 
+export const consumeVaccine = async (req, res) => {
+    // res.send('Router is working');
+    const drive = req.body;
+
+    console.log(drive);
+
+    try {
+        const foundDrive = await VaccineDriveData.findOne({ _id: drive.id});
+
+        console.log(foundDrive);
+        var myquery = { _id: drive.id };
+        var newvalues = { $set: { numberOfVaccines: (foundDrive.numberOfVaccines - 1), driveDate: drive.driveDate} };
+            const updatedDrive = await VaccineDriveData.updateOne(myquery, newvalues);
+            res.status(201).json(updatedDrive);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+export const deleteDrive = async (req, res) => {
+    // res.send('Router is working');
+    try {
+        console.log(req.query.id);
+        const deleteDriveResp = await VaccineDriveData.findByIdAndDelete(req.query.id);
+
+        res.status(200).json(deleteDriveResp);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}

@@ -2,7 +2,7 @@ import React from "react";
 
 const MenuButtons = ({ btnName, handleSideMenuClick }) => {
   return (
-    <div class='d-grid gap-4'>
+    <div className='d-grid gap-4'>
       <button
         type='button'
         onClick={(e) => handleSideMenuClick(e)}

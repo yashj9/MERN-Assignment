@@ -6,6 +6,7 @@ const initialAppState = {
   counter: 0,
   defaultLandingPage: 0,
   appData: null,
+  studentData: [],
   loading: false,
 };
 
@@ -17,6 +18,7 @@ const appActionTypes = {
   setCurrentLandingPage: "SET_CURRENT_LANDING_PAGE",
   setAppData: "SET_APP_DATA",
   IncCounter: "INC_COUNTER",
+  setStudentData: "SET_STUDENT_TABLE",
 };
 
 const AppReducer = (state, action) => {
@@ -41,6 +43,10 @@ const AppReducer = (state, action) => {
     case appActionTypes.setAppData:
       return produce(state, (draftState) => {
         draftState.appData = action.payload;
+      });
+    case appActionTypes.setStudentData:
+      return produce(state, (draftState) => {
+        draftState.studentsData = action.payload;
       });
 
     default:

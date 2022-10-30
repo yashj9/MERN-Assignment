@@ -5,6 +5,8 @@ import Main from "./components/common/Main";
 import Landing from "./components/modules/Home/HomePage";
 import { AppStore } from "./context/AppContext";
 import HomePage from "./components/modules/Home/HomePage";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   // const { appState } = useContext(AppStore);
@@ -12,6 +14,7 @@ const App = () => {
   // console.log("??", appState);
   return (
     <div className='App'>
+      <ToastContainer />
       <Header />
       <Main>
         <Sidebar />

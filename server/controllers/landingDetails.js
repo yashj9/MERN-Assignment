@@ -22,7 +22,16 @@ export const getLandingDetails = async (req, res) => {
         console.log(allDrives.length);
         console.log(allStudents.length);
 
-        const returnData = { drivesCount: allDrives.length, studentsCount: allStudents.length, vaccinatedStudents:  vaccinatedStudents.length};
+        var openDrives = [];
+        allDrives.forEach(drive => {
+            if (drive.numberOfVaccines > 0) {
+                openDrives.push(drive);
+            }
+        });
+
+        console.log(openDrives);
+
+        const returnData = { drivesCount: openDrives.length, studentsCount: allStudents.length, vaccinatedStudents:  vaccinatedStudents.length};
 
         res.status(200).json(returnData);
     } catch (error) {

@@ -10,7 +10,7 @@ const LandingPage = () => {
       payload: true,
     });
     try {
-      const data = await axios.get("https://api.agify.io/?name=shweta");
+      const data = await axios.get("http://localhost:5000/landingDetails");
       if (data) {
         appActionDispatch({
           type: appActionTypes.setAppData,
@@ -33,24 +33,20 @@ const LandingPage = () => {
   }, []);
   const { appState } = useContext(AppStore);
   const { appData, loading } = appState;
+  console.log(appData);
   return (
     <div className='dashboard-main'>
       <div className='d-flex card-container'>
         <div className='card'>
           <div className='card-body'>
             <h6 className='card-title'>Number of students vaccinated</h6>
-            <span className='card-text'>20/100</span>
+            <span className='card-text'>{`${appData?.vaccinatedStudents}/${appData?.studentsCount}`}</span>
           </div>
         </div>
         <div className='card'>
           <div className='card-body'>
             <h6 className='card-title'>Upcoming vaccination drives</h6>
-            <span className='card-text'>No Drive</span>
-          </div>
-        </div>
-        <div className='card'>
-          <div className='card-body'>
-            {loading ? "Loading..." : JSON.stringify(appData, null, 3)}
+            <span className='card-text'>{appData?.drivesCount === 0 ? "No Drive" : appData?.drivesCount}</span>
           </div>
         </div>
       </div>

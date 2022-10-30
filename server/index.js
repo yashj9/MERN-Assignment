@@ -5,6 +5,7 @@ import cors from 'cors';
 import studentRoutes from './routes/student.js';
 import driveRoutes from './routes/vaccineDrive.js';
 import landingDetailsRoutes from './routes/landingDetails.js';
+import useVaccineRoutes from './routes/useVaccine.js';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({limit: "20mb", extended: true}));
 app.use('/students', studentRoutes);
 app.use('/drives', driveRoutes);
 app.use('/landingDetails', landingDetailsRoutes);
+app.use('/useVaccine', useVaccineRoutes);
 
 const MDB_CONNECTION_URL = "mongodb+srv://yashj9:yashjpw@cluster0.dnsgovv.mongodb.net/?retryWrites=true&w=majority";
 

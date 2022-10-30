@@ -11,6 +11,7 @@ const studentSchema = mongoose.Schema({
     },
     vaccineStatus:{
         type: Boolean,
+        default: false,
     },
     vaccineName: {
         type: String,
