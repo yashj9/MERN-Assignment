@@ -1,0 +1,7 @@
+{
+    "name": "myStudentsVaccineApp",
+    "integrations": {
+    "capacitor": {}
+    },
+    "type": "react"
+}

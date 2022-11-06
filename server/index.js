@@ -6,6 +6,7 @@ import studentRoutes from './routes/student.js';
 import driveRoutes from './routes/vaccineDrive.js';
 import landingDetailsRoutes from './routes/landingDetails.js';
 import useVaccineRoutes from './routes/useVaccine.js';
+import getFilteredReport from './routes/filterReport.js';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use('/students', studentRoutes);
 app.use('/drives', driveRoutes);
 app.use('/landingDetails', landingDetailsRoutes);
 app.use('/useVaccine', useVaccineRoutes);
+app.use('/getFilteredReport', getFilteredReport);
 
 const MDB_CONNECTION_URL = "mongodb+srv://yashj9:yashjpw@cluster0.dnsgovv.mongodb.net/?retryWrites=true&w=majority";
 
