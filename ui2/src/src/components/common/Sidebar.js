@@ -3,7 +3,12 @@ import { appActionTypes, AppStore } from "../../context/AppContext";
 import MenuButtons from "./MenuButtons";
 
 const Sidebar = () => {
-  const buttons = ["Add/Manage Student Details", "Manage/Update Vaccine Status", "Generate Report", "Manage Vaccine Drives"];
+  const buttons = [
+    "Add/Manage Student Details",
+    "Add/Manage Vaccine Drive",
+    "Generate Report",
+    "Update Vaccine Status",
+  ];
   const { appActionDispatch } = useContext(AppStore);
   const handleMenuClick = (e) => {
     const index = buttons.findIndex((ele) => ele === e.target.innerText);

@@ -6,8 +6,10 @@ const initialAppState = {
   counter: 0,
   defaultLandingPage: 0,
   appData: null,
-  studentData: [],
   loading: false,
+  studentData: [],
+  vaccineData: [],
+  filteredData: [],
 };
 
 const AppStore = createContext(initialAppState);
@@ -18,10 +20,13 @@ const appActionTypes = {
   setCurrentLandingPage: "SET_CURRENT_LANDING_PAGE",
   setAppData: "SET_APP_DATA",
   IncCounter: "INC_COUNTER",
-  setStudentData: "SET_STUDENT_TABLE",
+  setStudentData: "SET_STUDENT_DATA",
+  setVaccineData: "SET_VACCINE_DATA",
+  setFilteredData: "SET_FILTER_DATA",
 };
 
 const AppReducer = (state, action) => {
+  console.log("ACT>>", action.payload);
   const { type } = action;
   switch (type) {
     case appActionTypes.setTheme:
@@ -46,7 +51,16 @@ const AppReducer = (state, action) => {
       });
     case appActionTypes.setStudentData:
       return produce(state, (draftState) => {
-        draftState.studentsData = action.payload;
+        draftState.studentData = action.payload;
+      });
+    case appActionTypes.setVaccineData:
+      return produce(state, (draftState) => {
+        draftState.vaccineData = action.payload;
+      });
+    case appActionTypes.setFilteredData:
+      return produce(state, (draftState) => {
+        //debugger;
+        draftState.filteredData = action.payload;
       });
 
     default:

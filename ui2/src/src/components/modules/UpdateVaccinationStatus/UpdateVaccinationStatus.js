@@ -1,14 +1,13 @@
 import axios from "axios";
-import moment from "moment/moment";
+import moment from "moment";
 import React, { useContext, useEffect } from "react";
+import { toast } from "react-toastify";
 import { appActionTypes, AppStore } from "../../../context/AppContext";
 import TableGrid from "../../common/TableGrid/TableGrid";
-import { toast } from "react-toastify";
 
-const StudentData = ({ getAllStudentsData }) => {
+const UpdateVaccinationStatus = ({ getAllStudentsData }) => {
   const { appState, appActionDispatch } = useContext(AppStore);
   const { studentData } = appState;
-
   useEffect(() => {
     getAllStudentsData();
   }, []);
@@ -43,8 +42,6 @@ const StudentData = ({ getAllStudentsData }) => {
     ],
     []
   );
-
-  console.log(studentData);
 
   const newTableData = studentData.map((obj) => {
     const newObj = {
@@ -115,12 +112,11 @@ const StudentData = ({ getAllStudentsData }) => {
         columns={columns}
         data={newTableData}
         handleAction={handleAction}
-        editBtnEn
-        deleteBtnEn
         actionCol
+        status
       />
     </div>
   );
 };
 
-export default StudentData;
+export default UpdateVaccinationStatus;

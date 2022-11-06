@@ -1,22 +1,35 @@
-import React, { useContext } from "react";
-import { AppStore } from "../../../context/AppContext";
-import StudentDetails from "../AddStudents/StudentDetails";
-import GenerateReport from "../GenerateReport/GenerateReport";
-import LandingPage from "../Landing/LandingPage";
-import VaccineStatus from "../VaccineStatus/VaccineStatus";
-import ManageDrive from "../ManageDrive/ManageDrive";
+import React, { useContext, useEffect } from "react";
+import { appActionTypes, AppStore } from "../../../context/AppContext";
+const LandingPage = React.lazy(() => import("../Landing/LandingPage"));
+const StudentDetails = React.lazy(() =>
+  import("../AddStudents/StudentDetails")
+);
+const VaccineDrive = React.lazy(() => import("../VaccineDrive/VaccineDrive"));
+const GenerateReport = React.lazy(() =>
+  import("../GenerateReport/GenerateReport")
+);
+const ManageVaccineStatus = React.lazy(() =>
+  import("../ManageVaccineStatus/ManageVaccineStatus")
+);
 
 const HomePage = () => {
-  const { appState } = useContext(AppStore);
+  const { appState, appActionDispatch } = useContext(AppStore);
   const { defaultLandingPage } = appState;
+
+  useEffect(() => {
+    appActionDispatch({
+      type: appActionTypes.setStudentData,
+      payload: [],
+    });
+  }, [defaultLandingPage]);
 
   return (
     <>
       {defaultLandingPage === 0 && <LandingPage />}
       {defaultLandingPage === 1 && <StudentDetails />}
-      {defaultLandingPage === 2 && <VaccineStatus />}
+      {defaultLandingPage === 2 && <VaccineDrive />}
       {defaultLandingPage === 3 && <GenerateReport />}
-      {defaultLandingPage === 4 && <ManageDrive />}
+      {defaultLandingPage === 4 && <ManageVaccineStatus />}
     </>
   );
 };

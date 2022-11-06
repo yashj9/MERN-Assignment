@@ -1,28 +1,29 @@
-import axios from "axios";
 import React, { useContext } from "react";
-import { appActionTypes, AppStore } from "../../../context/AppContext";
-import StudentData from "../StudentData/StudentData";
 import { toast } from "react-toastify";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import DriveDrive from "../DriveData/DriveData";
+import { appActionTypes, AppStore } from "../../../context/AppContext";
+import DriveData from "../DriveData/DriveData";
 
 const StudentDetailschema = Yup.object().shape({
-  studentName: Yup.string().required("Student name required"),
-  vaccineName: Yup.string().required("Vaccine name is required"),
+  driveDate: Yup.date().required("Student name required"),
+  numberOfVaccines: Yup.number().required("Vaccine name is required"),
 });
 
-const StudentDetails = () => {
+const VaccineDrive = () => {
   const { appActionDispatch } = useContext(AppStore);
-  const getAllStudentsData = async () => {
+  const getAllDriveData = async () => {
     appActionDispatch({
       type: appActionTypes.setLoader,
       payload: true,
     });
     try {
-      const data = await axios.get("http://localhost:5000/students");
+      const data = await axios.get("http://localhost:5000/drives");
       if (data) {
         appActionDispatch({
-          type: appActionTypes.setStudentData,
+          type: appActionTypes.setVaccineData,
           payload: data.data,
         });
         appActionDispatch({
@@ -36,16 +37,17 @@ const StudentDetails = () => {
       console.log("error: ", err);
     }
   };
-
   const handleSubmit = async (payload) => {
+    //debugger;
     try {
       const data = await axios.post(
-        "http://localhost:5000/students",
+        "http://localhost:5000/drives",
         payload
       );
       if (data) {
-        getAllStudentsData();
-        const notify = () => toast("Student Added Successfully 😲!");
+        // getAllStudentsData();
+        getAllDriveData();
+        const notify = () => toast("Drive Added Successfully 😲!");
         notify();
       }
       console.log("#DD>", data);
@@ -58,60 +60,58 @@ const StudentDetails = () => {
       console.log("error: ", err);
     }
   };
-
   return (
     <div className='dashboard-main'>
-      <h1 className='display-6 mb-4'>Add/Manage Student Details</h1>
+      <h1 className='display-6'> Add/Manage Drive </h1>
       <Formik
         initialValues={{
-          studentName: "",
-          vaccineName: "",
+          driveDate: "",
+          numberOfVaccines: "",
         }}
-        validationSchema={StudentDetailschema}
+        // validationSchema={StudentDetailschema}
         className='student-form '
         onSubmit={(values, { resetForm }) => {
           console.log(values);
           handleSubmit(values);
           resetForm();
+          // alert("Form is validated! Submitting the form...");
         }}
       >
         {({ touched, errors, isSubmitting, values }) => {
+          console.log("#TTTT", errors, values);
           return (
             <Form>
               <div className='col-6 mb-4'>
-                <label htmlFor='studentName' className='mb-2'>
-                  Student Name
+                <label htmlFor='driveDate' className='mb-2'>
+                  Vaccination Drive Date
                 </label>
                 <Field
-                  type='text'
+                  type='date'
                   className='form-control'
-                  id='studentName'
-                  name='studentName'
-                  placeholder='Student Name'
-                  autoComplete='off'
-                  autoFocus
+                  id='driveDate'
+                  name='driveDate'
+                  placeholder=' Vaccination Drive Date'
                 />
                 <ErrorMessage
                   component='div'
-                  name='studentName'
+                  name='driveDate'
                   className='error'
                 />
               </div>
               <div className='col-6 mb-4'>
                 <label htmlFor='vaccineName' className='mb-2'>
-                  Vaccine
+                  Number of vaccine available
                 </label>
                 <Field
-                  type='text'
+                  type='number'
                   className='form-control'
-                  id='vaccineName'
-                  name='vaccineName'
-                  placeholder='Vaccine Name'
-                  autoComplete='off'
+                  id='numberOfVaccines'
+                  name='numberOfVaccines'
+                  placeholder='Number of Vaccines'
                 />
                 <ErrorMessage
                   component='div'
-                  name='vaccineName'
+                  name='numberOfVaccines'
                   className='error'
                 />
               </div>
@@ -125,9 +125,9 @@ const StudentDetails = () => {
         }}
       </Formik>
 
-      <StudentData getAllStudentsData={getAllStudentsData} />
+      <DriveData getAllDriveData={getAllDriveData} />
     </div>
   );
 };
 
-export default StudentDetails;
+export default VaccineDrive;
